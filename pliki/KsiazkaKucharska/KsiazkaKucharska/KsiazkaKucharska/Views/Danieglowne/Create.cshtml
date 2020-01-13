@@ -1,0 +1,29 @@
+﻿@model KsiazkaKucharska.Models.Danieglowne
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Dodaj swój przepis na danie główne</h2>
+
+<p>Tutaj możesz wprowadzić nowy przepis!</p>
+
+<p>Uwaga! Wszystkie pola muszą być wypełnione, w innym wypadku przepis nie zostanie dodany</p>
+
+<p>Ten przepis automatycznie zostanie podpisany Twoim emailem</p>
+
+<form method="post">
+    Nazwa:
+    <br /> @Html.EditorFor(m => m.Nazwa)
+    <br /> Składniki:
+    <br />@Html.EditorFor(m => m.Skladniki)
+    <br /> Wykonanie:
+    <br />@Html.EditorFor(m => m.Wykonanie)
+    <br /> Ilość porcji:
+    <br />@Html.EditorFor(m => m.Iloscporcji)
+    @if (User.Identity.Name != "")
+    {
+        <br /> <input type="submit" onclick="location.href='Index'" value="Dodaj" />
+    }
+    </form>

@@ -1,0 +1,51 @@
+﻿@model KsiazkaKucharska.Models.Comment
+
+@{
+    ViewBag.Title = "DelCom";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Chcesz usunąć ten komentarz?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nazwauzyt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nazwauzyt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Komentarz)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Komentarz)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Datadodania)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Datadodania)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @if (User.Identity.Name == Model.Nazwauzyt)
+            {
+                <input type="submit" value="Usuń" class="btn btn-default" />
+            }|
+            @Html.ActionLink("Wróć do listy przepisów", "Index")
+        </div>
+    }
+</div>

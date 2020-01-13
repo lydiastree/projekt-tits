@@ -1,0 +1,65 @@
+﻿@model KsiazkaKucharska.ViewModel.ViewModels
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Przepisy na zupy</h2>
+@if (User.Identity.Name != "")
+{
+    <p>
+        @Html.ActionLink("Dodaj swoją zupę", "Create")
+    </p>
+}
+
+    <table class="table">
+        <tr>
+            <th>
+                Nazwa potarwy
+            </th>
+            <th>
+                Składniki
+            </th>
+            <th>
+                Wykonanie
+            </th>
+            <th>
+                Ilość porcji
+            </th>
+            <th>
+                Dodał użytkownik
+            </th>
+        </tr>
+
+        @foreach (var zupa in Model.Zupy)
+        {
+    <tr>
+        <td>
+            @zupa.Nazwa
+        </td>
+        <td>
+            @zupa.Skladniki
+        </td>
+        <td>
+            @zupa.Wykonanie
+        </td>
+        <td>
+            @zupa.Iloscporcji
+        </td>
+        <td>
+            @zupa.Ktododal
+        </td>
+        <td>
+            @Html.ActionLink("Zobacz komentarze", "AddCom", new { id = zupa.ZupaID })
+        </td>
+        @if (User.Identity.Name != "")
+        {
+            <td>
+                @Html.ActionLink("Dodaj Komentarz", "Com", new { id = zupa.ZupaID })
+            </td>
+        }
+    </tr>
+        }
+
+    </table>

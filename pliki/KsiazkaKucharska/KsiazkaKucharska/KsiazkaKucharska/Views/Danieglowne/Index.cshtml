@@ -1,0 +1,66 @@
+﻿@model KsiazkaKucharska.ViewModel.ViewModels
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danie główne</h2>
+
+@if (User.Identity.Name != "")
+{
+<p>
+    @Html.ActionLink("Dodaj swoją propozycję dania głównego", "Create")
+</p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Nazwa potarwy
+        </th>
+        <th>
+            Składniki
+        </th>
+        <th>
+            Wykonanie
+        </th>
+        <th>
+            Ilość porcji
+        </th>
+        <th>
+            Dodał użytkownik
+        </th>
+    </tr>
+
+    @foreach (var danie in Model.Daniaglowne)
+    {
+<tr>
+    <td>
+        @danie.Nazwa
+    </td>
+    <td>
+        @danie.Skladniki
+    </td>
+    <td>
+        @danie.Wykonanie
+    </td>
+    <td>
+        @danie.Iloscporcji
+    </td>
+    <td>
+        @danie.Ktododal
+    </td>
+    <td>
+        @Html.ActionLink("Zobacz komentarze", "AddCom", new { id = danie.DanieglowneID })
+    </td>
+     @if (User.Identity.Name != "")
+      {
+        <td>
+            @Html.ActionLink("Dodaj Komentarz", "Com", new { id = danie.DanieglowneID })
+        </td>
+      }
+</tr>
+    }
+
+</table>

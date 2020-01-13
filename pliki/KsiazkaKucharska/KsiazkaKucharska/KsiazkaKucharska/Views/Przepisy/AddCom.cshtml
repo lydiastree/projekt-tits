@@ -1,0 +1,66 @@
+﻿@model KsiazkaKucharska.ViewModel.ViewModels
+
+@{
+    ViewBag.Title = "AddCom";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Komentarze</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Nazwa użytkownika
+        </th>
+        <th>
+            Komentarz
+        </th>
+        <th>
+            Data dodanie
+        </th>
+    </tr>
+
+    @foreach (var kom in Model.Komentarze)
+    {
+        <tr>
+            <td>
+                @kom.Nazwauzyt
+            </td>
+            <td>
+                @kom.Komentarz
+            </td>
+            <td>
+                @kom.Datadodania
+            </td>
+            @if (User.Identity.Name == kom.Nazwauzyt)
+            {
+                <td>
+                    @Html.ActionLink("Usuń komentarz", "DelCom", new { id = kom.CommentID })
+                </td>
+            }
+        </tr>
+    }
+</table>
+
+<div>
+    @Html.ActionLink("Wróć do listy przepisów", "Index")
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

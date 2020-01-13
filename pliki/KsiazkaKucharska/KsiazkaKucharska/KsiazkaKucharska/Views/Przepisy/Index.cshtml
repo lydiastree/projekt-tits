@@ -1,0 +1,65 @@
+﻿@model KsiazkaKucharska.ViewModel.ViewModels
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Słodkie przepisy</h2>
+@if (User.Identity.Name != "")
+{
+    <p>
+        @Html.ActionLink("Dodaj swój słodki przepis", "Create")
+    </p>
+}
+
+    <table class="table">
+        <tr>
+            <th>
+                Nazwa deseru
+            </th>
+            <th>
+                Składniki
+            </th>
+            <th>
+                Wykonanie
+            </th>
+            <th>
+                Kalorie
+            </th>
+            <th>
+                Dodał użytkownik
+            </th>
+        </tr>
+
+        @foreach (var przepis in Model.Przepisy)
+        {
+    <tr>
+        <td>
+            @przepis.Nazwa
+        </td>
+        <td>
+            @przepis.Skladniki
+        </td>
+        <td>
+            @przepis.Wykonanie
+        </td>
+        <td>
+            @przepis.Kalorie
+        </td>
+        <td>
+            @przepis.Ktododal
+        </td>
+        <td>
+            @Html.ActionLink("Zobacz komentarze", "AddCom", new { id = przepis.PrzepisID })
+        </td>
+        @if (User.Identity.Name != "")
+        {
+            <td>
+                @Html.ActionLink("Dodaj Komentarz", "Com", new { id = przepis.PrzepisID })
+            </td>
+        }
+    </tr>
+        }
+
+    </table>

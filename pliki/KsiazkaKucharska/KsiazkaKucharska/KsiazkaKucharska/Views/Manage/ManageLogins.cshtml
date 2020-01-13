@@ -1,0 +1,153 @@
+﻿@model KsiazkaKucharska.Models.ManageLoginsViewModel
+@using Microsoft.Owin.Security
+@{
+    ViewBag.Title = "Twoje przepisy";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+@{
+    if (Model.Mojed.Count == 0 && Model.Mojez.Count == 0 && Model.Mojep.Count == 0)
+    {
+        <div>
+            <p>
+                TU BĘDĄ SIĘ WYŚWIETLAĆ MOJE PRZEPISY. :)
+            </p>
+        </div>
+    }
+    else
+    {
+        if (Model.Mojed.Count > 0 || Model.Mojez.Count > 0 || Model.Mojep.Count > 0)
+        {
+
+            <table class="table">
+                <tbody>
+                    @if (Model.Mojez.Count == 0)
+                    {
+
+                    }
+                    else
+                    {
+                        <tr>
+                            <th>
+                                Nazwa zupy
+                            </th>
+                            <th>
+                                Składniki
+                            </th>
+                            <th>
+                                Wykonanie
+                            </th>
+                            <th>
+                                Ilość porcji
+                            </th>
+                        </tr>
+                        foreach (var item in Model.Mojez)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nazwa)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Skladniki)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Wykonanie)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Iloscporcji)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edytuj", "Editz", new { id = item.ZupaID }) | @Html.ActionLink("Usuń", "Deletez", new { id = item.ZupaID })
+                                </td>
+                            </tr>
+                        }
+                    }
+                    @if (Model.Mojed.Count == 0)
+                    {
+
+                    }
+                    else
+                    {
+                        <tr>
+                            <th>
+                                Nazwa danina głównego
+                            </th>
+                            <th>
+                                Składniki
+                            </th>
+                            <th>
+                                Wykonanie
+                            </th>
+                            <th>
+                                Ilość porcji
+                            </th>
+                        </tr>
+                        foreach (var item in Model.Mojed)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nazwa)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Skladniki)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Wykonanie)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Iloscporcji)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edytuj", "Editd", new { id = item.DanieglowneID }) | @Html.ActionLink("Usuń", "Deleted", new { id = item.DanieglowneID })
+                                </td>
+                            </tr>
+                        }
+                    }
+                    @if (Model.Mojep.Count == 0)
+                    {
+
+                    }
+                    else
+                    {
+                        <tr>
+                            <th>
+                                Nazwa przepisu
+                            </th>
+                            <th>
+                                Składniki
+                            </th>
+                            <th>
+                                Wykonanie
+                            </th>
+                            <th>
+                                Kalorie
+                            </th>
+                        </tr>
+                        foreach (var item in Model.Mojep)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nazwa)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Skladniki)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Wykonanie)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Kalorie)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edytuj", "Editp", new { id = item.PrzepisID }) | @Html.ActionLink("Usuń", "Deletep", new { id = item.PrzepisID })
+                                </td>
+                            </tr>
+                        }}
+                    </tbody>
+
+            </table>
+        }
+    }
+}
